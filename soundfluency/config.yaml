@@ -40,6 +40,7 @@ style:
   translation_color: "#B8C4D9"
   accent_color: "#4F8EF7"
   panel_opacity: 140          # 0-255: opacidade do painel atrás do texto
+  show_translation: true      # false = vídeo 100% em inglês (ignora o campo "pt" das lições)
   show_phrase_counter: true
   repeat_hint: "Repeat after me"   # dica exibida no cartão; use "" para ocultar
 

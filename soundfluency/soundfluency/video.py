@@ -138,7 +138,10 @@ def build_lesson(lesson_path: Path, cfg: dict, engine, out_dir: Path, work_dir: 
         audio, duration = _phrase_audio(engine, phrase, pacing, cfg["tts"], work_dir, i)
         wav = work_dir / f"p{i:03d}_full.wav"
         sf.write(wav, audio, tts.SAMPLE_RATE)
-        timeline.segments.append(Segment(png, wav, duration, subtitle=f"{phrase['en']}\n{phrase['pt']}"))
+        subtitle = phrase["en"]
+        if phrase.get("pt") and cfg["style"].get("show_translation", True):
+            subtitle += f"\n{phrase['pt']}"
+        timeline.segments.append(Segment(png, wav, duration, subtitle=subtitle))
 
     # segmentos mp4 + concat
     concat_list = work_dir / "concat.txt"

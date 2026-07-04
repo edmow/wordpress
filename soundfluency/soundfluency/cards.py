@@ -74,12 +74,16 @@ def render_phrase_card(
     # linha de destaque sob o cabeçalho
     draw.rectangle([margin, int(h * 0.105), margin + int(w * 0.06), int(h * 0.105) + 6], fill=accent)
 
-    en_font, en_lines = _fit_text(draw, phrase["en"], style["font_bold"], max_text_width, int(h * 0.075))
-    pt_font, pt_lines = _fit_text(draw, phrase["pt"], style["font_regular"], max_text_width, int(h * 0.042))
+    translation = phrase.get("pt") if style.get("show_translation", True) else None
 
+    en_font, en_lines = _fit_text(draw, phrase["en"], style["font_bold"], max_text_width, int(h * 0.075))
     line_h_en = int(en_font.size * 1.3)
-    line_h_pt = int(pt_font.size * 1.35)
-    block_h = len(en_lines) * line_h_en + int(h * 0.045) + len(pt_lines) * line_h_pt
+    block_h = len(en_lines) * line_h_en
+    pt_font, pt_lines, line_h_pt = None, [], 0
+    if translation:
+        pt_font, pt_lines = _fit_text(draw, translation, style["font_regular"], max_text_width, int(h * 0.042))
+        line_h_pt = int(pt_font.size * 1.35)
+        block_h += int(h * 0.045) + len(pt_lines) * line_h_pt
 
     # painel translúcido atrás do texto para legibilidade em qualquer fundo
     panel_pad = int(h * 0.06)
@@ -99,11 +103,12 @@ def render_phrase_card(
         lw = draw.textlength(line, font=en_font)
         draw.text(((w - lw) / 2, y), line, font=en_font, fill=text_color)
         y += line_h_en
-    y += int(h * 0.045)
-    for line in pt_lines:
-        lw = draw.textlength(line, font=pt_font)
-        draw.text(((w - lw) / 2, y), line, font=pt_font, fill=trans_color)
-        y += line_h_pt
+    if pt_lines:
+        y += int(h * 0.045)
+        for line in pt_lines:
+            lw = draw.textlength(line, font=pt_font)
+            draw.text(((w - lw) / 2, y), line, font=pt_font, fill=trans_color)
+            y += line_h_pt
 
     hint = style.get("repeat_hint", "")
     if hint:
