@@ -1,0 +1,58 @@
+# SoundFluency — configuração da produção de vídeos
+# Tudo aqui pode ser sobrescrito por lição (mesmo nome de chave no JSON da lição).
+
+video:
+  width: 1920          # use 1080x1920 para Shorts/Reels (formato vertical)
+  height: 1080
+  fps: 30
+  codec: libx264
+  crf: 18              # qualidade visual (menor = melhor; 18 é visualmente sem perdas)
+  audio_bitrate: 192k
+
+tts:
+  # Engines disponíveis: kokoro (padrão, grátis, roda local), elevenlabs (API paga), espeak (só para testes)
+  engine: kokoro
+  # Vozes Kokoro recomendadas para inglês (as mais bem avaliadas):
+  #   af_heart (feminina US, a melhor geral), af_bella, am_michael (masculina US),
+  #   bf_emma (feminina UK), bm_george (masculino UK)
+  voice: af_heart
+  speed_normal: 1.0
+  speed_slow: 0.7      # velocidade da repetição lenta
+  # ElevenLabs (opcional, melhor qualidade absoluta — requer ELEVENLABS_API_KEY no ambiente)
+  elevenlabs_voice_id: EXAVITQu4vr4xnSDxMaL   # "Sarah"
+  elevenlabs_model: eleven_multilingual_v2
+
+pacing:
+  # Sequência de reprodução de cada frase. Passos possíveis:
+  #   normal = áudio em velocidade natural
+  #   slow   = áudio em velocidade lenta
+  #   pause  = silêncio para o aluno repetir (duração = áudio anterior x pause_factor)
+  pattern: [normal, pause, slow, pause, normal, pause]
+  pause_factor: 1.3    # multiplicador da pausa de repetição
+  gap_between_phrases: 1.0   # segundos de respiro entre frases
+  title_card_seconds: 4.0
+
+style:
+  # Fontes (caminhos absolutos ou instaladas no sistema)
+  font_bold: /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
+  font_regular: /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
+  text_color: "#FFFFFF"
+  translation_color: "#B8C4D9"
+  accent_color: "#4F8EF7"
+  panel_opacity: 140          # 0-255: opacidade do painel atrás do texto
+  show_phrase_counter: true
+  repeat_hint: "Repeat after me"   # dica exibida no cartão; use "" para ocultar
+
+backgrounds:
+  # Modo de fundo dos cartões:
+  #   auto     = usa imagens da pasta backgrounds/ se existirem; senão gera gradientes
+  #   images   = exige imagens na pasta backgrounds/
+  #   gradient = sempre gera gradientes procedurais (não precisa de nenhuma imagem)
+  mode: auto
+  dir: backgrounds
+  darken: 0.55         # escurecimento sobre a imagem para o texto ficar legível (0-1)
+  blur: 6              # desfoque da imagem de fundo (0 = sem desfoque)
+
+output:
+  dir: output
+  make_srt: true       # gera legenda .srt sincronizada junto do vídeo

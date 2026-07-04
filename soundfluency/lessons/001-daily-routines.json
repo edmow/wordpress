@@ -1,0 +1,19 @@
+{
+  "id": "001",
+  "title": "Daily Routines",
+  "subtitle": "Rotina diária — frases essenciais",
+  "level": "A2",
+  "background": null,
+  "phrases": [
+    { "en": "I wake up at seven o'clock every day.", "pt": "Eu acordo às sete horas todos os dias." },
+    { "en": "First, I brush my teeth and take a shower.", "pt": "Primeiro, eu escovo os dentes e tomo banho." },
+    { "en": "I usually have coffee and toast for breakfast.", "pt": "Eu geralmente tomo café com torradas no café da manhã." },
+    { "en": "I leave home at eight and take the bus to work.", "pt": "Eu saio de casa às oito e pego o ônibus para o trabalho." },
+    { "en": "I start working at nine in the morning.", "pt": "Eu começo a trabalhar às nove da manhã." },
+    { "en": "At noon, I have lunch with my coworkers.", "pt": "Ao meio-dia, eu almoço com meus colegas de trabalho." },
+    { "en": "I get home around six in the evening.", "pt": "Eu chego em casa por volta das seis da tarde." },
+    { "en": "After dinner, I like to watch a series or read a book.", "pt": "Depois do jantar, eu gosto de assistir a uma série ou ler um livro." },
+    { "en": "I go to bed at eleven and fall asleep quickly.", "pt": "Eu vou para a cama às onze e adormeço rapidamente." },
+    { "en": "On weekends, I sleep in and relax with my family.", "pt": "Nos fins de semana, eu durmo até mais tarde e relaxo com minha família." }
+  ]
+}
